@@ -123,6 +123,9 @@ def scrape():
 
     mars_dictionary["hemisphere_image_urls"] = hemisphere_image_urls
 
+    # Close the browser after scraping
+    browser.quit()
+
     return mars_dictionary
     
 
