@@ -19,19 +19,19 @@
     <div class="row">
         <div class="col-md-12">
             <h3>Latest Mars News</h3>
-            <h4>{{mars.news_title}}</h4>
-            <p>{{mars.news_p}}</p>
+            <h4>{{mars_data.title}}</h4>
+            <p>{{mars_data.para}}</p>
         </div>
 
     <div class="row">
         <div class="col-md-8">
-            <h3>Latest Mars News</h3>
-            <img src="{{mars.featured_image_url}}" alt="Featured Image">
+            <h3>Featured Mars Image</h3>
+            <img src="{{mars_data.feat}}" alt="Featured Image" class="img-responsive">
         </div>
         <div class="col-md-4">
-            <h5>Latest Mars News</h5>
-            <p>{mars.mars_weather}}</p>
-            {mars.mars_facts}}
+            <h5>Current Weather on Mars</h5>
+            <p>{{mars_data.weather}}</p>
+            {{mars_data.facts}}
         </div>
     </div>
     <div class="row">
@@ -40,11 +40,25 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <h3>Mars Hemispheres</h3>    
+        <div class="col-md-6">
+            <h3>{{mars_data.hemis[0]["title"]}}</h3> 
+            <img src="{{mars_data.hemis[0].img_url}}" alt="Featured Image" class="img-responsive">
+        </div>
+        <div class="col-md-6">
+            <h3>{{mars_data.hemis[1]["title"]}}</h3> 
+            <img src="{{mars_data.hemis[1].img_url}}" alt="Featured Image" class="img-responsive">
         </div>
     </div>
-        
+    <div class="row">
+        <div class="col-md-6">
+            <h3>{{mars_data.hemis[2]["title"]}}</h3> 
+            <img src="{{mars_data.hemis[2].img_url}}" alt="Featured Image" class="img-responsive">
+        </div>
+        <div class="col-md-6">
+            <h3>{{mars_data.hemis[3]["title"]}}</h3> 
+            <img src="{{mars_data.hemis[3].img_url}}" alt="Featured Image" class="img-responsive">
+        </div>
+    </div>
     </div>
   </div>
   

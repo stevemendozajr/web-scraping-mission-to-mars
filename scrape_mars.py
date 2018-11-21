@@ -13,8 +13,9 @@ import pandas as pd
 
 
 def init_browser():
-    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=False)
+    
+    executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
+    return Browser("chrome", **executable_path, headless=False)
 
 
 
@@ -22,7 +23,7 @@ def init_browser():
 def scrape():
 
     browser = init_browser()
-    mars_dictionary = {}
+    mars_data_dict = {}
 
 
 
@@ -38,8 +39,8 @@ def scrape():
     news_p = soup.find('div', class_='article_teaser_body').text
     
 
-    mars_dictionary["news_title"] = news_title
-    mars_dictionary["news_p"] = news_p
+    mars_data_dict["title"] = news_title
+    mars_data_dict["para"] = news_p
 
 
     url_image = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
@@ -64,9 +65,11 @@ def scrape():
     image = results.find('figure', 'lede').a['href']
     link = "https://www.jpl.nasa.gov"
     featured_image_url = link + image
+
+    mars_data_dict["feat"] =  featured_image_url
     
 
-    mars_dictionary["featured_image_url"] = featured_image_url
+   
     
 
 
@@ -81,8 +84,8 @@ def scrape():
     recent_tweet = soup.find('ol', class_='stream-items')
     mars_weather = recent_tweet.find('p', class_="tweet-text").text
     
-
-    mars_dictionary["mars_weather"] = mars_weather
+    mars_data_dict["weather"] = mars_weather
+   
     
 
 
@@ -92,10 +95,9 @@ def scrape():
     table = pd.read_html(url_facts)
     table_df = pd.DataFrame(table[0])
     html_table = table_df.to_html()
-    mars_facts = html_table.replace('\n', ' ')
-    mars_facts
+    
 
-    mars_dictionary["mars_facts"] = mars_facts
+    mars_data_dict["facts"] = html_table
     
 
 
@@ -121,11 +123,12 @@ def scrape():
         browser.back()
 
 
-    mars_dictionary["hemisphere_image_urls"] = hemisphere_image_urls
+    mars_data_dict["hemis"] = hemisphere_image_urls
+
 
     # Close the browser after scraping
     browser.quit()
 
-    return mars_dictionary
+    return mars_data_dict
     
 
